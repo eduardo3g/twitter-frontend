@@ -11,6 +11,6 @@ export default {
     });
 
     commit("USER_LOGOUT");
-    router.push('/');
+    router.push('/').catch(() => {});
   },
 };
