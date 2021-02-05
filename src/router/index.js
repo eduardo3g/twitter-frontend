@@ -1,8 +1,9 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Root from '../views/Root.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Root from '../views/Root.vue';
+import AuthMiddleware from './auth.guard';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -25,12 +26,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
-    meta: { protected: true }
+    meta: { protected: true },
   }
 ]
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+router.beforeEach(AuthMiddleware);
+
+export default router;
