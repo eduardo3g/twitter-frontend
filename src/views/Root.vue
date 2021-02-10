@@ -21,23 +21,40 @@
     </div>
 
     <!-- right side -->
-    <div class="flex w-1/2 h-full">Right</div>
+    <div class="flex w-1/2 h-full">
+      <div class="flex flex-col w-1/2 font-bold">
+        <i class="fab fa-twitter text-blue text-4xl mb-5"></i>
+        <p class="text-3xl mb-12">See what's happening in the world right now</p>
+        <p>Join Twitter today.</p>
+        <button class="rounded-full bg-blue font-bold text-lg text-white mt-4 p-3 hover:bg-darkblue">
+          Sign up
+        </button>
+        <button @click.prevent="showSignInPage" class="rounded-full border border-blue bg-white font-bold text-lg text-blue mt-4 p-3 hover:bg-lightblue">
+          Log in
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Root',
+  methods: {
+    showSignInPage() {
+      this.$router.push('LogIn');
+    },
+  },
 };
 </script>
 
 <style>
   div {
-    xborder: 1px dashed blue;
-    xpadding: 15px;
+    border: 1px dashed blue;
+    padding: 15px;
   }
 
   div.items-center.justify-center {
-    xbackground-color: rgba(240, 240, 240, 0.5);
+    background-color: rgba(240, 240, 240, 0.5);
   }
 </style>
