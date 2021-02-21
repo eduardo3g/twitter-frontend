@@ -26,10 +26,10 @@
         <i class="fab fa-twitter text-blue text-4xl mb-5"></i>
         <p class="text-3xl mb-12">See what's happening in the world right now</p>
         <p>Join Twitter today.</p>
-        <button @click.prevent="setSignUpStep('step1')" class="rounded-full bg-blue font-bold text-lg text-white mt-4 p-3 hover:bg-darkblue">
+        <button @click.prevent="setSignUpStep('step1')" class="rounded-full bg-blue font-bold text-lg text-white mt-4 p-3 hover:bg-darkblue transition duration-150 ease-in">
           Sign up
         </button>
-        <button @click.prevent="showSignInPage" class="rounded-full border border-blue bg-white font-bold text-lg text-blue mt-4 p-3 hover:bg-lightblue">
+        <button @click.prevent="showSignInPage" class="rounded-full border border-blue bg-white font-bold text-lg text-blue mt-4 p-3 hover:bg-lightblue transition duration-150 ease-in">
           Log in
         </button>
       </div>
