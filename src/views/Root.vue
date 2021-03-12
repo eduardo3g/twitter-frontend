@@ -108,6 +108,33 @@
           </div>
 
         </div>
+
+        <div v-if="showModal === 'step3'">
+          <div class="pl-1 pr-4 py-1 h-12">
+            <button @click="setSignUpStep('step2')" class="abslute rounded-full p-2 pl-3 hover:bg-lightblue">
+              <i class="fas fa-arrow-left text-blue"></i>
+            </button>
+            <button @click="setSignUpStep('step4')" class="rounded-full bg-blue font-bold text-white mt-2 p-1 pl-3 pr-3 relative right-0 float-right hover:bg-darkblue" :class="`${password.length < 8 ? 'opacity-50 cursor-not-allowed' : ''}`">
+              Next
+            </button>
+            <i class="flex justify-center fab fa-twitter text-blue text-2xl mt-2 mb-8"></i>
+          </div>
+
+          <div class="pt-5 px-8">
+            <div class="flex justify-between items-center pb-4">
+              <p class="text-2xl font-bold">You'll need a password</p>
+            </div>
+
+            <p class="text-dark mb-2">Make sure it's 8 characters or more.</p>
+
+            <div class="w-full bg-lightblue border-b-2 border-dark p-2">
+              <p class="leading-tight text-dark">Password</p>
+              <input v-model="password" class="w-full bg-lightblue text-lg" :type="`${revealPassword ? 'text' : 'password'}`">
+            </div>
+
+            <button @click="revealPassword = !revealPassword" class="text-blue pl-2">Reveal password</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -123,6 +150,8 @@ export default {
       name: '',
       email: '',
       birthdate: '',
+      password: '',
+      revealPassword: false,
     };
   },
   computed: {
@@ -143,7 +172,12 @@ export default {
           if (!this.name || !this.email || !this.birthdate) {
             return;
           }
-        break;
+          break;
+        case 'step4':
+          if (this.password.length < 8) {
+            return;
+          }
+          break;
       }
       this.setSignupStep(step);
     },
