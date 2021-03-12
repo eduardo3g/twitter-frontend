@@ -186,6 +186,9 @@ export default {
     ...mapGetters('signup', [
       'showModal',
     ]),
+    ...mapGetters('authentication', [
+      'user'
+    ]),
   },
   methods: {
     showSignInPage() {
@@ -194,6 +197,23 @@ export default {
     ...mapActions('signup', [
       'setSignupStep',
     ]),
+    ...mapActions('authentication', [
+      'signUp',
+    ]),
+    async signMeUp() {
+      try {
+        await this.signUp({
+          username: this.email,
+          password: this.password,
+          name: this.name,
+        });
+
+        this.setSignUpStep('step5');
+      } catch (e) {
+        alert('Error signing up, please check console for error detail');
+        console.log('error signing up:', e);
+      }
+    },
     setSignUpStep(step) {
       switch (step) {
         case 'step2':
