@@ -71,8 +71,8 @@
         <!-- step 2 -->
         <div v-if="showModal === 'step2'">
 
-          <div class="pl-1 pr-4 py-1 h-12 flex justify-between">
-            <button @click="setSignUpStep('step1')" class="abslute rounded-full p-2 pl-3 hover:bg-lightblue">
+          <div class="pl-1 pr-4 py-1 h-12">
+            <button @click="setSignUpStep('step1')" class="absolute rounded-full p-2 pl-3 hover:bg-lightblue">
               <i class="fas fa-arrow-left text-blue"></i>
             </button>
             <button @click="setSignUpStep('step3')" class="rounded-full bg-blue font-bold text-white mt-2 p-1 pl-3 pr-3 relative right-0 float-right hover:bg-darkblue">
@@ -111,7 +111,7 @@
 
         <div v-if="showModal === 'step3'">
           <div class="pl-1 pr-4 py-1 h-12">
-            <button @click="setSignUpStep('step2')" class="abslute rounded-full p-2 pl-3 hover:bg-lightblue">
+            <button @click="setSignUpStep('step2')" class="absolute rounded-full p-2 pl-3 hover:bg-lightblue">
               <i class="fas fa-arrow-left text-blue"></i>
             </button>
             <button @click="setSignUpStep('step4')" class="rounded-full bg-blue font-bold text-white mt-2 p-1 pl-3 pr-3 relative right-0 float-right hover:bg-darkblue" :class="`${password.length < 8 ? 'opacity-50 cursor-not-allowed' : ''}`">
