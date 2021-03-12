@@ -101,7 +101,7 @@
             <div class="mt-5 mb-8">
               <p class="font-bold text-xl mb-1">Personalized ads</p>
               <div class="flex justify-between items-top">
-                <p>You will always see ads on Twitter based on your Twitter activity. When this setting is enabled, Twitter may further personalized ads from Twitter advertisers, on and off Twitter, by combining your activity and information from partners.</p>
+                <p>You will always see ads on Twitter based on your Twitter activity. When this setting is enabled, Twitter may further personalise ads from Twitter advertisers, on and off Twitter, by combining your Twitter activity with other online activity and information from our partners.</p>
                 <input class="mt-1 ml-2 mr-2" type="checkbox" />
               </div>
             </div>
