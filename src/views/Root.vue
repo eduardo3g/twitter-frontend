@@ -61,7 +61,7 @@
               <input v-model="email" class="w-full bg-lightblue text-lg" type="text" />
             </div>
             <p class="font-bold">Date of birth</p>
-            <p class="text-dark">This will not be shown publicly. Confirm your own age, even if this account is for business, a pet, or something else.</p>
+            <p class="text-dark">This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
             <div class="w-full bg-lightblue border-b-2 border-dark mb-8 p-2">
               <input v-model="birthdate" class="w-full bg-lightblue text-lg" type="text" />
             </div>            
