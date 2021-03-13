@@ -11,6 +11,7 @@ export default {
     });
 
     commit("USER_LOGOUT");
+    commit("signup/SIGNUP_STEP_SET", "", { root: true });
     router.push('/').catch(() => {});
   },
   async signUp({ commit }, form) {
