@@ -225,6 +225,10 @@ export default {
     ]),
     ...mapActions('authentication', [
       'signUp',
+      'confirmSignUp',
+      'resendSignUp',
+      'signInUser',
+      'logoutUser',
     ]),
     async signMeUp() {
       try {
