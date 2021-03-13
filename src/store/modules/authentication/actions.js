@@ -23,4 +23,15 @@ export default {
     });
     commit("USER_SIGNUP", user);
   },
+  async confirmSignUp(_, form) {
+    await Auth.confirmSignUp(form.email, form.verificationCode);
+  },
+  async resendSignUp(_, form) {
+    await Auth.resendSignUp(form.email);
+  },
+  async signInUser({ dispatch }, form) {
+    const user = await Auth.signIn(form.email, form.password);
+    await dispatch("loginUser", user);
+    router.push({ name: 'Home' });
+  },
 };
