@@ -160,14 +160,14 @@
             </div>
 
             <p>By signing up, you agree to our <a href="#" class="text-blue">Terms</a>, <a href="#" class="text-blue">Privacy Policy</a> and <a href="#" class="text-blue">Cookie Use</a>.</p>
-            <button class="w-full rounded-full mt-4 py-3 bg-blue text-white font-bold hover:bg-darkblue">Sign up</button>
+            <button @click="signMeUp" class="w-full rounded-full mt-4 py-3 bg-blue text-white font-bold hover:bg-darkblue">Sign up</button>
           </div>
         </div>
 
         <!-- step 5 -->
         <div v-if="showModal === 'step5'">
           <div class="pl-1 pr-4 py-1 h-12">
-            <button @click="confirmUserSignUp" class="rounded-full bg-blue font-bold mt-2 p-1 pl-3 pr-3 relative right-0 float-right hover:bg-darkblue" :class="`${!verificationCode ? 'opacity-50 cursor-not-allowed' : ''}`">
+            <button @click="confirmUserSignUp" class="rounded-full bg-blue font-bold text-white mt-2 p-1 pl-3 pr-3 relative right-0 float-right hover:bg-darkblue" :class="`${!verificationCode ? 'opacity-50 cursor-not-allowed' : ''}`">
               Next
             </button>
             <i class="flex justify-center fab fa-twitter text-blue text-2xl mt-2 mb-8"></i>
@@ -240,8 +240,7 @@ export default {
 
         this.setSignUpStep('step5');
       } catch (e) {
-        alert('Error signing up, please check console for error detail');
-        console.log('error signing up:', e);
+        alert(e.message);
       }
     },
     async confirmUserSignUp() {
@@ -254,8 +253,7 @@ export default {
         });
         await this.signIn();
       } catch (e) {
-        alert('Error confirming verification code, please check console for error detail');
-        console.log('error confirming verification code:', e);
+        alert(e.message);
       }
     },
     async signIn() {
@@ -275,6 +273,8 @@ export default {
         await this.resendSignUp({
           email: this.email,
         });
+
+        alert('We sent you a new veritifcation code.');
       } catch (e) {
         alert('Error resending verification code, please check console for error detail');
         console.log('error resending verification code:', e);
@@ -304,7 +304,7 @@ export default {
 
 <style>
   div {
-    border: 1px blue;
+    border: 1px dashed blue;
     padding: 15px;
   }
 
