@@ -99,7 +99,7 @@
                 <input class="mt-1 ml-2 mr-2" type="checkbox" />
               </div>
             </div>            
-            <div class="mt-5 mb-8">
+            <div class="mt-5 mb-5">
               <p class="font-bold text-xl mb-1">Personalized ads</p>
               <div class="flex justify-between items-top">
                 <p>You will always see ads on Twitter based on your Twitter activity. When this setting is enabled, Twitter may further personalise ads from Twitter advertisers, on and off Twitter, by combining your Twitter activity with other online activity and information from our partners.</p>
@@ -147,7 +147,7 @@
           </div>
 
           <div class="pt-5 px-8">
-            <div class="flex justify-between">
+            <div class="flex justify-between items-center pb-8">
               <p class="text-2xl font-bold">Create your account</p>
             </div>
 
@@ -157,7 +157,7 @@
             <div class="w-full bg-lightblue border-b-2 border-dark mb-6 p-2">
               <input v-model="email" class="w-full py-2 bg-lightblue text-lg" type="text">
             </div>
-            <div class="w-full bg-lightblue border-b-2 border-dark mb-6 p-2">
+            <div class="w-full bg-lightblue border-b-2 border-dark mb-16 p-2">
               <input v-model="birthdate" class="w-full py-2 bg-lightblue text-lg" type="text">
             </div>
 
