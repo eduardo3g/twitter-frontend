@@ -22,6 +22,30 @@
 
     <!-- right side -->
     <div class="flex w-1/2 h-full">
+      <div class="w-full flex absolute mt-4">
+        <form class="w-1/2 flex justify-center">
+          <div class="bg-lightblue border-b-2 border-dark mr-4 p-2">
+            <p class="text-dark">
+              Phone, email or username
+            </p>
+            <input v-model="email" class="bg-lightblue text-lg" type="text" />
+          </div>
+
+          <div class="bg-lightblue border-b-2 border-dark mr-4 p-2">
+            <p class="text-dark">
+              Password
+            </p>
+            <input v-model="password" class="bg-lightblue text-lg" type="password" />
+          </div>
+
+          <div class="self-center">
+            <button @click.prevent="signIn" class="font-bold rounded-full border border-blue text-blue p-2 pl-3 pr-3 hover:bg-lightblue">
+              Log in
+            </button>
+          </div>
+        </form>
+      </div>
+
       <div class="flex items-center justify-center w-full h-full">
         <div class="flex flex-col w-1/2 font-bold">
           <i class="fab fa-twitter text-blue text-4xl mb-5"></i>
@@ -266,8 +290,7 @@ export default {
         });
       } catch (e) {
         this.logoutUser();
-        alert('Error signing in, please check console for error detail');
-        console.log('error signing in:', e);
+        alert(`Error signing in: ${e.message}`);
       }
     },
     async resendVerificationCode() {
@@ -278,8 +301,7 @@ export default {
 
         alert('We sent you a new veritifcation code.');
       } catch (e) {
-        alert('Error resending verification code, please check console for error detail');
-        console.log('error resending verification code:', e);
+        alert(`Error resending verification code: ${e.message}`);
       }
     },
     setSignUpStep(step) {
