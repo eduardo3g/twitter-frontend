@@ -21,8 +21,8 @@
     </div>
 
     <!-- right side -->
-    <div class="flex w-1/2 h-full">
-      <div class="w-full flex absolute mt-4">
+    <div class="flex w-1/2 h-full relative">
+      <div class="w-full flex absolute mt-4 justify-around">
         <form class="w-1/2 flex justify-center">
           <div class="bg-lightblue border-b-2 border-dark mr-4 p-2">
             <p class="text-dark">
@@ -39,7 +39,7 @@
           </div>
 
           <div class="self-center">
-            <button @click.prevent="signIn" class="font-bold rounded-full border border-blue text-blue p-2 pl-3 pr-3 hover:bg-lightblue">
+            <button @click.prevent="signIn" class="font-bold w-20 min-w-full rounded-full border border-blue text-blue p-2 pl-3 pr-3 hover:bg-lightblue">
               Log in
             </button>
           </div>
