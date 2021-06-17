@@ -1,9 +1,6 @@
 <template>
    <div class="hidden md:block w-1/3 h-full border-l border-lighter px-6 py-2 overflow-y-scroll relative min-w-max">
-      <div>
-        <i class="fas fa-search absolute mt-2 ml-5 text-sm text-light"></i>
-        <input class="pl-12 rounded-full w-full p-2 bg-lighter text-sm mb-4" placeholder="Search Tweet"/>
-      </div>
+      <SearchBar />
 
       <div class="w-full rounded-lg bg-lightest">
         <div class="flex items-center justify-between p-3">
@@ -45,8 +42,13 @@
 </template>
 
 <script>
+import SearchBar from './SearchBar.vue';
+
 export default {
   name: 'DefaultRightBar',
+  components: {
+    SearchBar,
+  },
   data() {
     return {
       trending: [
