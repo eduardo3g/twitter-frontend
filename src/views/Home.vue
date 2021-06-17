@@ -4,8 +4,8 @@
     <SideNav />
 
     <!-- tweets -->
-    <div class="w-full h-full overflow-y-scroll">
-      <div class="w-full h-full overflow-y-scroll">
+    <div class="w-full h-full">
+      <div class="w-full h-full">
         <div class="px-5 py-3 border-b border-lighter flex items-center justify-between">
           <h1 class="text-xl font-bold">Home</h1>
           <i class="far fa-star text-xl text-blue"></i>
