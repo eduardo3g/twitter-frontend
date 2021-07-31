@@ -19,7 +19,7 @@ const getMyProfile = async () => {
           followersCount
           followingCount
           tweetsCount
-          likesCounts
+          likesCount
         }
       }
     `,
@@ -49,7 +49,7 @@ const getProfileByScreenName = async (screenName) => {
           followersCount
           followingCount
           tweetsCount
-          likesCounts
+          likesCount
           following
           followedBy
         }
@@ -314,7 +314,7 @@ const editMyProfile = async (newProfile) => {
           followingCount
           id
           imageUrl
-          likesCounts
+          likesCount
           location
           name
           screenName
