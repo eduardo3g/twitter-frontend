@@ -132,7 +132,6 @@ export default {
     },
     async signOut() {
       try {
-        console.log("signing out...");
         await this.logoutUser();
       } catch (e) {
         alert(`Error signing out: ${e.message}`);
