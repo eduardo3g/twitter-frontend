@@ -1,5 +1,6 @@
 import {
   getMyProfile,
+  getProfileByScreenName,
   getMyTimeline,
   tweet,
   like,
@@ -14,6 +15,16 @@ export default {
     const profile = await getMyProfile();
     await dispatch("getMyTimeline", 10);
     commit("PROFILE_SET", profile);
+  },
+  async loadProfile({ commit, rootState }, screenName) {
+    if (!screenName) return;
+    if (rootState.twitter.profile.screenName == screenName) {
+      const profile = await getMyProfile();
+      commit("PROFILE_SET", profile);
+    } else {
+      const profile = await getProfileByScreenName(screenName);
+      commit("PROFILE_SET", profile);
+    }
   },
   async getMyTimeline({ commit }, limit) {
     const timeline = await getMyTimeline(limit);
