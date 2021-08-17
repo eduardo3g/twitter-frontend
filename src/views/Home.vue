@@ -4,8 +4,8 @@
     <SideNav />
 
     <!-- tweets -->
-    <div class="w-full h-full overflow-y-scroll">
-      <div class="w-full h-full overflow-y-scroll">
+    <div class="w-full h-full overflow-y-scroll no-scrollbar">
+      <div class="w-full h-full overflow-y-scroll no-scrollbar">
         <div
           class="px-5 py-3 border-b border-lighter flex items-center justify-between"
         >
