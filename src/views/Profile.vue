@@ -3,7 +3,7 @@
     <div class="flex container h-screen w-full">
       <SideNav />
 
-      <div class="w-1/2 h-full overflow-y-scroll">
+      <div class="w-1/2 h-full overflow-y-scroll no-scrollbar">
         <div class="px-5 py-3 border-b border-lighter flex items-center">
           <button
             class="rounded-full p-3 px-4 focus:outline-none hover:bg-lightblue"
@@ -104,8 +104,9 @@
                 <p class="text-dark">{{ profile.location }}</p>
               </div>
               <div v-if="profile.website" class="flex flex-row mr-4">
-                <i class="fas fa-link text-dark align-text-bottom pt-1 mr-2">
-                </i>
+                <i
+                  class="fas fa-link text-dark align-text-bottom pt-1 mr-2"
+                ></i>
                 <a
                   :href="`${profile.website}`"
                   target="_blank"
@@ -133,11 +134,52 @@
               </button>
             </div>
           </div>
+          <div class="flex flex-row justify-evenly mt-2">
+            <button
+              class="text-dark font-bold border-b-2 border-blue px-10 py-4 hover:bg-lightblue"
+            >
+              Tweets
+            </button>
+            <button
+              class="text-dark font-bold border-b-2 px-10 py-4 hover:bg-lightblue"
+            >
+              Tweets & replies
+            </button>
+            <button
+              class="text-dark font-bold border-b-2 px-10 py-4 hover:bg-lightblue"
+            >
+              Media
+            </button>
+            <button
+              class="text-dark font-bold border-b-2 px-10 py-4 hover:bg-lightblue"
+            >
+              Like
+            </button>
+          </div>
         </div>
+
+        <!-- Tweets -->
+        <div
+          v-if="tweets.length === 0"
+          class="flex flex-col items-center justify-center w-full pt-10"
+        >
+          <p class="font-bold text-lg">You haven’t tweeted yet</p>
+          <p class="text-sm text-dark">
+            When you post a Tweet, it’ll show up here.
+          </p>
+          <button
+            class="text-white bg-blue rounded-full font-semibold mt-4 px-4 py-2 hover:bg-darkblue"
+          >
+            <p class="hidden lg:block">Tweet now</p>
+            <i class="fas fa-plus lg:hidden"></i>
+          </button>
+        </div>
+
+        <Tweets :tweets="tweets" />
       </div>
 
       <div
-        class="hidden md:block w-1/3 z-0 h-full border-l border-lighter px-6 py-2 overflow-y-scroll relative"
+        class="hidden md:block w-1/3 z-0 h-full border-l border-lighter px-6 py-2 overflow-y-scroll no-scrollbar relative"
       >
         <SearchBar />
       </div>
@@ -148,12 +190,14 @@
 <script>
 import SideNav from "../components/SideNav.vue";
 import SearchBar from "../components/SearchBar.vue";
+import Tweets from "../components/Tweets.vue";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Profile",
   components: {
     SideNav,
     SearchBar,
+    Tweets,
   },
   data() {
     return {
@@ -166,17 +210,20 @@ export default {
       userProfile: "profile",
       isMySelf: "isSelf",
     }),
-    ...mapGetters("profilePage", ["profile", "joinedDate"]),
+    ...mapGetters("profilePage", ["profile", "joinedDate", "tweets"]),
   },
   methods: {
     ...mapActions("authentication", ["loginUserIfAlreadyAuthenticated"]),
-    ...mapActions("profilePage", ["loadProfile"]),
+    ...mapActions("profilePage", ["loadProfile", "loadTweets"]),
   },
   async created() {
     await this.loginUserIfAlreadyAuthenticated();
     const screenName = this.$route.params.screenName;
     this.isSelf = this.isMySelf(screenName);
-    await this.loadProfile(screenName);
+    await Promise.all([
+      this.loadProfile(screenName),
+      this.loadTweets(screenName),
+    ]);
   },
 };
 </script>
