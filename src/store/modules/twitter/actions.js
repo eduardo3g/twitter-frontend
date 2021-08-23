@@ -11,9 +11,8 @@ import {
 } from "../../../lib/backend";
 
 export default {
-  async setProfile({ commit, dispatch }) {
+  async setProfile({ commit }) {
     const profile = await getMyProfile();
-    await dispatch("getMyTimeline", 10);
     commit("PROFILE_SET", profile);
   },
   async loadProfile({ commit, rootState }, screenName) {
@@ -25,6 +24,9 @@ export default {
       const profile = await getProfileByScreenName(screenName);
       commit("PROFILE_SET", profile);
     }
+  },
+  async loadMyTimeline({ dispatch }) {
+    await dispatch("getMyTimeline", 10);
   },
   async getMyTimeline({ commit }, limit) {
     const timeline = await getMyTimeline(limit);

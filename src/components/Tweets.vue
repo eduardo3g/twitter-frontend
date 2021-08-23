@@ -14,6 +14,7 @@ import Retweet from "../components/Retweet.vue";
 
 export default {
   name: "Tweets",
+  props: ["tweets"],
   components: {
     Tweet,
     Retweet,
@@ -22,7 +23,7 @@ export default {
     ...mapGetters("twitter", {
       nextToken: "nextTokenTweets",
     }),
-    ...mapGetters("twitter", ["profile", "tweets"]),
+    ...mapGetters("twitter", ["profile"]),
   },
 };
 </script>
