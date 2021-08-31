@@ -1,6 +1,8 @@
 import {
   getMyProfile,
   getProfileByScreenName,
+  getImageUploadUrl,
+  editMyProfile,
   getMyTimeline,
   tweet,
   getTweets,
@@ -70,5 +72,13 @@ export default {
   async replyTweet({ dispatch }, { tweetId, text }) {
     await reply(tweetId, text);
     await dispatch("getMyTimeline", 10);
+  },
+  async getImageUploadUrl(_, { extension, contentType }) {
+    return await getImageUploadUrl(extension, contentType);
+  },
+  async editMyProfile({ commit }, newProfile) {
+    const profile = await editMyProfile(newProfile);
+    commit("PROFILE_SET", profile);
+    return profile;
   },
 };

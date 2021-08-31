@@ -50,6 +50,7 @@
                   profile.imageUrl === null ||
                     profile.imageUrl === 'default_profile.png'
                 "
+                @click="setUpProfile()"
                 class="ml-auto text-blue font-bold px-4 py-2 rounded-full border border-blue mb-2 hover:bg-lightblue"
               >
                 Set up profile
@@ -183,6 +184,11 @@
       >
         <SearchBar />
       </div>
+
+      <SetUpProfileOverlay
+        v-if="showSetUpProfileOverlay"
+        :showSetUpProfileModal.sync="showSetUpProfileModal"
+      />
     </div>
   </div>
 </template>
@@ -191,16 +197,20 @@
 import SideNav from "../components/SideNav.vue";
 import SearchBar from "../components/SearchBar.vue";
 import Tweets from "../components/Tweets.vue";
+import SetUpProfileOverlay from "../components/SetUpProfileOverlay.vue";
 import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Profile",
   components: {
     SideNav,
     SearchBar,
     Tweets,
+    SetUpProfileOverlay,
   },
   data() {
     return {
+      showSetUpProfileOverlay: false,
       isSelf: false,
       followingLabel: "Following",
     };
@@ -215,6 +225,9 @@ export default {
   methods: {
     ...mapActions("authentication", ["loginUserIfAlreadyAuthenticated"]),
     ...mapActions("profilePage", ["loadProfile", "loadTweets"]),
+    setUpProfile() {
+      this.showSetUpProfileOverlay = true;
+    },
   },
   async created() {
     await this.loginUserIfAlreadyAuthenticated();
