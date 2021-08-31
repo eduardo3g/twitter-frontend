@@ -60,6 +60,7 @@
                   profile.imageUrl !== null &&
                     profile.imageUrl !== 'default_profile.png'
                 "
+                @click="editProfile()"
                 class="ml-auto text-blue font-bold px-4 py-2 rounded-full border border-blue mb-2 hover:bg-lightblue"
               >
                 Edit profile
@@ -164,7 +165,7 @@
           v-if="tweets.length === 0"
           class="flex flex-col items-center justify-center w-full pt-10"
         >
-          <p class="font-bold text-lg">You haven’t tweeted yet</p>
+          <p class="font-bold text-lg">You haven’t Tweeted yet</p>
           <p class="text-sm text-dark">
             When you post a Tweet, it’ll show up here.
           </p>
@@ -186,8 +187,13 @@
       </div>
 
       <SetUpProfileOverlay
-        v-if="showSetUpProfileOverlay"
+        v-if="showSetUpProfileModal"
         :showSetUpProfileModal.sync="showSetUpProfileModal"
+      />
+
+      <EditProfileOverlay
+        v-if="showEditProfileModal"
+        :showEditProfileModal.sync="showEditProfileModal"
       />
     </div>
   </div>
@@ -198,8 +204,8 @@ import SideNav from "../components/SideNav.vue";
 import SearchBar from "../components/SearchBar.vue";
 import Tweets from "../components/Tweets.vue";
 import SetUpProfileOverlay from "../components/SetUpProfileOverlay.vue";
+import EditProfileOverlay from "../components/EditProfileOverlay.vue";
 import { mapGetters, mapActions } from "vuex";
-
 export default {
   name: "Profile",
   components: {
@@ -207,10 +213,12 @@ export default {
     SearchBar,
     Tweets,
     SetUpProfileOverlay,
+    EditProfileOverlay,
   },
   data() {
     return {
-      showSetUpProfileOverlay: false,
+      showSetUpProfileModal: false,
+      showEditProfileModal: false,
       isSelf: false,
       followingLabel: "Following",
     };
@@ -226,7 +234,10 @@ export default {
     ...mapActions("authentication", ["loginUserIfAlreadyAuthenticated"]),
     ...mapActions("profilePage", ["loadProfile", "loadTweets"]),
     setUpProfile() {
-      this.showSetUpProfileOverlay = true;
+      this.showSetUpProfileModal = true;
+    },
+    editProfile() {
+      this.showEditProfileModal = true;
     },
   },
   async created() {
