@@ -11,6 +11,8 @@ import {
   retweet,
   unretweet,
   reply,
+  follow,
+  unfollow,
 } from "../../../lib/backend";
 
 export default {
@@ -80,5 +82,11 @@ export default {
     const profile = await editMyProfile(newProfile);
     commit("PROFILE_SET", profile);
     return profile;
+  },
+  async followUser(_, profileId) {
+    await follow(profileId);
+  },
+  async unfollowUser(_, profileId) {
+    await unfollow(profileId);
   },
 };
