@@ -92,11 +92,11 @@ export default {
     await unfollow(profileId);
   },
   async getFollowers({ commit }, { userId, limit }) {
-    const followers = getFollowers(userId, limit);
+    const followers = await getFollowers(userId, limit);
     commit("TWITTER_FOLLOWERS", followers);
   },
   async getFollowing({ commit }, { userId, limit }) {
-    const following = getFollowing(userId, limit);
+    const following = await getFollowing(userId, limit);
     commit("TWITTER_FOLLOWING", following);
   },
 };
