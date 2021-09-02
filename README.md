@@ -18,7 +18,7 @@
 
 # 📚 Introduction
 
-This front-end application is an identical Twitter clone. It was made to connect to a fully Serverless back-end application, which is opened at <a ref="https://github.com/eduardo3g/twitter">this repository</a>. I recommend you check it out if you want to build production-ready Serverless applications with Amazon Web Services.
+This front-end application is an identical Twitter clone. It was made to connect to a fully Serverless back-end application, which is opened at <a href="https://github.com/eduardo3g/twitter">this repository</a>. I recommend you check it out if you want to build production-ready Serverless applications with Amazon Web Services.
 
 # 👨🏽‍🔧 Tech stack
 
