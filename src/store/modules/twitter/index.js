@@ -12,6 +12,14 @@ const state = () => ({
     tweets: [],
     nextToken: undefined,
   },
+  followers: {
+    followers: [],
+    nextToken: undefined,
+  },
+  following: {
+    following: [],
+    nextToken: undefined,
+  },
 });
 
 export default {
