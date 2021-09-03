@@ -6,7 +6,7 @@
   Twitter 🐦
 </h1>
 
-<p align="center">A social network front-end developed with AWS Amplify, Vue.js and Tailwind 💅</p>
+<p align="center">An amazing social network front-end developed with AWS Amplify, Vue.js and Tailwind 💅</p>
 
 <p align="center" style="margin-top:15px">
 
