@@ -19,4 +19,9 @@ export default {
     state.following.following = profiles;
     state.following.nextToken = nextToken;
   },
+  TWITTER_LOADMORE_TWEETS(state, timeline) {
+    const { tweets, nextToken } = timeline;
+    state.tweets.tweets = [...state.tweets.tweets, ...tweets];
+    state.tweets.nextToken = nextToken;
+  },
 };

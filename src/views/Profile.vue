@@ -3,7 +3,10 @@
     <div class="flex container h-screen w-full">
       <SideNav />
 
-      <div class="w-1/2 h-full overflow-y-scroll no-scrollbar">
+      <div
+        class="w-1/2 h-full overflow-y-scroll no-scrollbar"
+        v-scroll:bottom="loadMore"
+      >
         <div class="px-5 py-3 border-b border-lighter flex items-center">
           <button
             @click="goToHome"
@@ -246,11 +249,18 @@ export default {
       userProfile: "profile",
       isMySelf: "isSelf",
     }),
+    ...mapGetters("profilePage", {
+      nextToken: "nextTokenTweets",
+    }),
     ...mapGetters("profilePage", ["profile", "joinedDate", "tweets"]),
   },
   methods: {
     ...mapActions("authentication", ["loginUserIfAlreadyAuthenticated"]),
-    ...mapActions("profilePage", ["loadProfile", "loadTweets"]),
+    ...mapActions("profilePage", [
+      "loadProfile",
+      "loadTweets",
+      "loadMoreTweets",
+    ]),
     ...mapActions("profilePage", {
       follow: "followUser",
       unfollow: "unfollowUser",
@@ -298,6 +308,12 @@ export default {
         console.error(`failed to unfollow [${this.profile.id}]`, err);
         this.profile.following = true;
         this.profile.followersCount++;
+      });
+    },
+    async loadMore() {
+      console.log("loading more tweets...");
+      await this.loadMoreTweets(10).catch((error) => {
+        console.error(error);
       });
     },
   },
