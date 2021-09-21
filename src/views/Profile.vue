@@ -4,7 +4,7 @@
       <SideNav />
 
       <div
-        class="w-1/2 h-full overflow-y-scroll no-scrollbar"
+        class="w-full h-full overflow-y-scroll no-scrollbar"
         v-scroll:bottom="loadMore"
       >
         <div class="px-5 py-3 border-b border-lighter flex items-center">
@@ -182,8 +182,9 @@
         </div>
 
         <!-- Tweets -->
+        <Loader :loading="loading" />
         <div
-          v-if="tweets.length === 0"
+          v-if="!loading && tweets.length === 0"
           class="flex flex-col items-center justify-center w-full pt-10"
         >
           <p class="font-bold text-lg">You haven’t Tweeted yet</p>
@@ -226,6 +227,7 @@ import SearchBar from "../components/SearchBar.vue";
 import Tweets from "../components/Tweets.vue";
 import SetUpProfileOverlay from "../components/SetUpProfileOverlay.vue";
 import EditProfileOverlay from "../components/EditProfileOverlay.vue";
+import Loader from "../components/Loader.vue";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Profile",
@@ -235,6 +237,7 @@ export default {
     Tweets,
     SetUpProfileOverlay,
     EditProfileOverlay,
+    Loader,
   },
   data() {
     return {
@@ -242,6 +245,7 @@ export default {
       showEditProfileModal: false,
       isSelf: false,
       followingLabel: "Following",
+      loading: true,
     };
   },
   computed: {
@@ -318,13 +322,14 @@ export default {
     },
   },
   async created() {
+    if (this.tweets.length > 0) this.loading = false;
     await this.loginUserIfAlreadyAuthenticated();
     const screenName = this.$route.params.screenName;
     this.isSelf = this.isMySelf(screenName);
     await Promise.all([
       this.loadProfile(screenName),
       this.loadTweets(screenName),
-    ]);
+    ]).then(() => (this.loading = false));
   },
 };
 </script>

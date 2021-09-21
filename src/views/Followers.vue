@@ -3,7 +3,7 @@
     <div class="flex container h-screen w-full">
       <SideNav />
 
-      <div class="w-1/2 h-full overflow-y-scroll no-scrollbar">
+      <div class="w-full h-full overflow-y-scroll no-scrollbar">
         <!-- top navigation -->
         <div class="px-5 pt-3 flex items-center">
           <button
@@ -34,7 +34,8 @@
           </button>
         </div>
 
-        <Users :users="profiles" />
+        <Loader :loading="loading" />
+        <Users :users="profiles" :loading="loading" />
       </div>
 
       <div
@@ -50,6 +51,7 @@
 import SideNav from "../components/SideNav.vue";
 import SearchBar from "../components/SearchBar.vue";
 import Users from "../components/Users.vue";
+import Loader from "../components/Loader.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Followers",
@@ -57,9 +59,12 @@ export default {
     SideNav,
     SearchBar,
     Users,
+    Loader,
   },
   data() {
-    return {};
+    return {
+      loading: true,
+    };
   },
   computed: {
     ...mapGetters("profilePage", ["profile"]),
@@ -89,6 +94,8 @@ export default {
     },
   },
   async created() {
+    if (this.profiles.length > 0) this.loading = false;
+
     // handle full page reload
     await this.loginUserIfAlreadyAuthenticated();
     const screenName = this.$route.params.screenName;
@@ -96,7 +103,7 @@ export default {
     await this.getFollowers({
       userId: this.profile.id,
       limit: 10,
-    });
+    }).then(() => (this.loading = false));
   },
 };
 </script>
