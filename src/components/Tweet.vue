@@ -131,10 +131,6 @@ export default {
         });
       }
     },
-    async sendReply() {
-      await this.reply({ tweetId: this.tweet.id, text: this.text });
-      this.showReplyOverlay = false;
-    },
   },
 };
 </script>
