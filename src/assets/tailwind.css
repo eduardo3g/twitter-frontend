@@ -2,10 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-button:focus, input:focus {
+button:focus,
+input:focus {
   outline: none;
 }
 
 .modal-main {
   height: 40rem;
+}
+
+textarea {
+  resize: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 1.6em;
+  width: 1.6em;
+  border-radius: 50em;
+  background: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg)
+    no-repeat 50% 50%;
+  background-size: contain;
+  opacity: 0;
+  pointer-events: none;
+}
+
+input[type="search"]:focus::-webkit-search-cancel-button {
+  opacity: 0.2;
+  pointer-events: all;
 }

@@ -20,6 +20,10 @@ const state = () => ({
     following: [],
     nextToken: undefined,
   },
+  search: {
+    results: [],
+    nextToken: undefined,
+  },
 });
 
 export default {
