@@ -45,7 +45,7 @@
                 {{ tweet.createdAt | timeago }}
               </p>
             </div>
-            <p class="py-2">
+            <p class="py-2" v-linkify>
               {{ tweet.text }}
             </p>
           </div>
