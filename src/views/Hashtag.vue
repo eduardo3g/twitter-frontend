@@ -4,7 +4,7 @@
       <SideNav />
 
       <div
-        class="w-full md:w-1/2 h-full overflow-y-scroll"
+        class="w-full md:w-1/2 h-full overflow-y-scroll no-scrollbar"
         v-scroll:bottom="loadMore"
       >
         <div class="px-5 py-3 border-lighter flex items-center">
@@ -80,7 +80,7 @@
       </div>
 
       <div
-        class="hidden md:block w-1/3 z-0 h-full border-l border-lighter px-6 py-2 overflow-y-scroll relative"
+        class="hidden md:block w-1/3 z-0 h-full border-l border-lighter px-6 py-2 overflow-y-scroll no-scrollbar relative"
       ></div>
     </div>
   </div>
