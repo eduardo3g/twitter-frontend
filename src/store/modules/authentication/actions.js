@@ -5,14 +5,16 @@ export default {
   loginUser({ commit }, user) {
     commit("USER_LOGIN", user);
   },
-  async logoutUser({ commit }) {
+  async logoutUser({ commit, dispatch }) {
     await Auth.signOut({
       global: true, // sign-out from all devices and revoke all the tokens
     });
-
     commit("USER_LOGOUT");
-    commit("signup/SIGNUP_STEP_SET", "", { root: true });
-    router.push("/").catch(() => {});
+    dispatch("signup/setSignupStep", "", { root: true });
+    dispatch("twitter/unsubscribeNotifications", null, { root: true });
+    dispatch("twitter/resetState", null, { root: true });
+    dispatch("profilePage/resetState", null, { root: true });
+    router.push("/");
   },
   async signUp({ commit }, form) {
     const user = await Auth.signUp({
@@ -30,17 +32,22 @@ export default {
   async resendSignUp(_, form) {
     await Auth.resendSignUp(form.email);
   },
+
   async signInUser({ dispatch }, form) {
     const user = await Auth.signIn(form.email, form.password);
     await dispatch("loginUser", user);
     await dispatch("twitter/setProfile", null, { root: true });
+    await dispatch("twitter/subscribeNotifications", null, { root: true });
     router.push({ name: "Home" });
   },
+
   async loginUserIfAlreadyAuthenticated({ dispatch }) {
     const user = await Auth.currentUserInfo();
     if (user) {
+      console.log("user is logged in already");
       await dispatch("loginUser", user);
       await dispatch("twitter/setProfile", null, { root: true });
+      await dispatch("twitter/subscribeNotifications", null, { root: true });
     }
   },
 };
