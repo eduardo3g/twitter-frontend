@@ -2,7 +2,7 @@ import actions from "./actions";
 import mutations from "./mutations";
 import getters from "./getters";
 
-const state = () => ({
+const initialState = {
   profile: {
     id: "",
     createdAt: "1999-03-27",
@@ -24,7 +24,15 @@ const state = () => ({
     results: [],
     nextToken: undefined,
   },
-});
+  notifications: {
+    all: [],
+    mentions: [],
+    newNotifications: 0,
+    subscription: undefined,
+  },
+};
+
+const state = () => ({ ...initialState });
 
 export default {
   namespaced: true,

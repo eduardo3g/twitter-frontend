@@ -17,6 +17,7 @@ import {
   getFollowing,
   search,
   getHashTag,
+  getOnNotifiedSubscription,
 } from "../../../lib/backend";
 
 export default {
@@ -170,5 +171,31 @@ export default {
     );
 
     commit("TWITTER_LOADMORE_SEARCH_HASHTAG", searchResults);
+  },
+  async subscribeNotifications({ commit, getters, dispatch }) {
+    if (!getters.profile.id || getters.subscription) return;
+
+    const userId = getters.profile.id;
+    const subscription = getOnNotifiedSubscription(userId).subscribe({
+      next: async ({ value }) => {
+        const notification = value.data.onNotified;
+
+        if (notification.type !== "DMed") {
+          await dispatch("getMyTimeline", 10);
+          commit("TWITTER_NOTIFICATIONS_NEW", notification);
+        }
+      },
+    });
+
+    commit("TWITTER_NOTIFICATIONS_SUBSCRIBE", subscription);
+  },
+  resetNotifications({ commit }) {
+    commit("TWITTER_NOTIFICATIONS_RESET");
+  },
+  unsubscribeNotifications({ commit }) {
+    commit("TWITTER_NOTIFICATIONS_UNSUBSCRIBE");
+  },
+  resetState({ commit }) {
+    commit("TWITTER_RESET_STATE");
   },
 };
