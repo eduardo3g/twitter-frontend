@@ -79,9 +79,10 @@
                 <i class="fas fa-ellipsis-h"></i>
               </button>
               <button
-                class="ml-auto mr-3 text-blue font-bold px-3 py-2 rounded-full border border-blue mb-2 hover:bg-lightblue"
+                v-if="profile.followedBy"
+                class="text-xs md:text-base md:ml-auto mr-1 md:mr-3 text-blue font-bold px-3 py-1 md:px-3 md:py-2 rounded-full border border-blue mb-2 hover:bg-lightblue"
               >
-                <i class="fas fa-envelope"></i>
+                <i @click="sendMessage()" class="fas fa-envelope"></i>
               </button>
               <button
                 v-if="!profile.following"
@@ -216,7 +217,7 @@
           </button>
         </div>
         <div v-if="noUser" class="flex flex-col items-center justify-center">
-          <div class="w-3/5 flex flex-col items-center mt-10">
+          <div class="w-3/5 flex flex-col items-left mt-10">
             <p class="font-bold text-2xl">This account doesn’t exist</p>
             <p class="text-lg text-dark">Try searching for another.</p>
           </div>
@@ -296,6 +297,15 @@ export default {
     gotoHome() {
       this.$router.push({
         name: "Home",
+      });
+    },
+    sendMessage() {
+      const conversationId = `${this.userProfile.id}_${this.profile.id}`;
+      this.$router.push({
+        name: "Messages",
+        params: {
+          conversation: conversationId,
+        },
       });
     },
     goToFollowing() {
