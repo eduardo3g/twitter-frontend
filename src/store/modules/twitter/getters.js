@@ -18,4 +18,21 @@ export default {
   mentions: (state) => state.notifications.mentions,
   newNotifications: (state) => state.notifications.newNotifications,
   subscription: (state) => state.notifications.subscription,
+  newMessages: (state) => state.notifications.messages.newMessages,
+  conversationsSet: (state) => state.notifications.messages.conversationsSet,
+  hasNewMessages: (state) => (conversation) => {
+    const set = state.notifications.messages.conversationsSet;
+    const active = state.notifications.messages.active.conversation;
+    return (
+      set.has(conversation.id) &&
+      ((active && conversation.id != active.id) || !active)
+    );
+  },
+  conversations: (state) => state.notifications.messages.conversations,
+  nextTokenConversations: (state) =>
+    state.notifications.messages.conversations.nextToken,
+  messages: (state) => state.notifications.messages.active.messages,
+  nextTokenMessages: (state) =>
+    state.notifications.messages.active.nextTokenMessages,
+  conversation: (state) => state.notifications.messages.active.conversation,
 };
