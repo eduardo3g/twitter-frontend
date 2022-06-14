@@ -3,26 +3,13 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   purge: { content: ["./public/**/*.html", "./src/**/*.vue"] },
-  plugins: [
-    plugin(({ addUtilities }) => {
-      const newUtilities = {
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        ".no-scrollbar::-webkit-scrollbar": {
-          display: "none",
-        },
-        ".no-scrollbar": {
-          "-ms-overflow-style": "none" /* IE and Edge */,
-          "scrollbar-width": "none" /* Firefox */,
-        },
-      };
-
-      addUtilities(newUtilities);
-    }),
-  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     container: {
       center: true,
+    },
+    maxHeight: {
+      full: "85%",
     },
     extend: {
       fontFamily: {
@@ -38,8 +25,40 @@ module.exports = {
         lightest: "#F5F8FA",
       },
     },
+    screens: {
+      sm: "360px",
+      // => @media (min-width: 360px) { ... }
+
+      md: "768px",
+      // => @media (min-width: 768px) { ... }
+
+      lg: "1024px",
+      // => @media (min-width: 1024px) { ... }
+
+      xl: "1280px",
+      // => @media (min-width: 1280px) { ... }
+
+      "2xl": "1536px",
+      // => @media (min-width: 1536px) { ... }
+    },
   },
   variants: {
     extend: {},
   },
+  plugins: [
+    plugin(({ addUtilities }) => {
+      const newUtilities = {
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        ".no-scrollbar::-webkit-scrollbar": {
+          display: "none",
+        },
+        ".no-scrollbar": {
+          "-ms-overflow-style": "none" /* IE and Edge */,
+          "scrollbar-width": "none" /* Firefox */,
+        },
+      }; //
+
+      addUtilities(newUtilities);
+    }),
+  ],
 };

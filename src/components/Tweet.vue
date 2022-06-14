@@ -1,6 +1,9 @@
 <template>
-  <div v-if="tweet.profile" class="w-full p-4 border-b hover:bg-lightest flex">
-    <div class="flex-none mr-4">
+  <div
+    v-if="tweet.profile"
+    class="w-full p-2 pt-1 pb-1 md:p-4 md:pt-2 md:pb-2 border-b hover:bg-lightest flex"
+  >
+    <div class="flex-none mr-2 md:mr-4 pt-1">
       <a :href="`#/${tweet.profile.screenName}`">
         <img
           :src="`${tweet.profile.imageUrl || 'default_profile.png'}`"
@@ -11,14 +14,16 @@
     <div class="w-full">
       <div class="flex items-center w-full">
         <p class="font-semibold">{{ tweet.profile.name }}</p>
-        <p class="text-sm text-dark ml-2">@{{ tweet.profile.screenName }}</p>
+        <p class="hidden md:block text-sm text-dark ml-2">
+          @{{ tweet.profile.screenName }}
+        </p>
         <p class="text-sm text-dark ml-2">·</p>
         <p class="text-sm text-dark ml-2">{{ tweet.createdAt | timeago }}</p>
-        <i class="fas fa-angle-down text-sm ml-auto"></i>
+        <i class="fas fa-angle-down text-sm ml-auto text-dark"></i>
       </div>
       <p
         v-if="tweet.inReplyToUsers && tweet.inReplyToUsers.length > 0"
-        class="text-dark"
+        class="text-dark text-xs md:text-sm"
       >
         Replying to
         {{ tweet.inReplyToUsers.map((x) => `@${x.screenName}`).join(",") }}
@@ -69,8 +74,8 @@
 </template>
 
 <script>
+import ReplyOverlay from "./ReplyOverlay.vue";
 import { mapActions } from "vuex";
-import ReplyOverlay from "../components/ReplyOverlay.vue";
 export default {
   name: "Tweet",
   props: ["tweet"],
