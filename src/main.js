@@ -7,6 +7,7 @@ import router from "./router";
 import store from "./store";
 import directives from "./directives";
 import filters from "./filters";
+import './registerServiceWorker'
 
 Amplify.configure({
   Auth: {
